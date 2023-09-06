@@ -4,8 +4,8 @@
   "description": "Simple NodeJS utility for sending osc",
   "main": "main.js",
   "bin": "main.js",
-  "type": "module",
   "scripts": {
+    "build": "pkg ."
   },
   "author": {
     "name": "Joel Wetzell",
@@ -17,5 +17,16 @@
   "dependencies": {
     "commander": "^11.0.0",
     "osc-min": "^1.1.2"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "pkg":{
+    "outputPath":"dist",
+    "targets":[
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-win-x64"
+    ]
   }
 }

@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
-import {Option, program} from 'commander';
-import osc from 'osc-min'
-import dgram from 'dgram';
-import net from 'net';
+const {Option, program} = require('commander');
+const osc = require('osc-min')
+const dgram = require('dgram')
+const net = require('net')
+const packageInfo = require('./package.json')
 
+program.name(packageInfo.name)
+program.version(packageInfo.version)
 program.description('simple util to sendosc');
 program.enablePositionalOptions()
 program.addOption(new Option('-p,--protocol <protocol>','Network protocol').choices(['tcp','udp']).default('udp'))
