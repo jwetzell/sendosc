@@ -19,7 +19,11 @@
     "osc-min": "^1.1.2"
   },
   "devDependencies": {
-    "pkg": "^5.8.1"
+    "pkg": "^5.8.1",
+    "eslint": "^8.48.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3"
   },
   "pkg":{
     "outputPath":"dist",
