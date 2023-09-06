@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import {Option, program} from 'commander';
 import osc from 'osc-min'
 import dgram from 'dgram';
