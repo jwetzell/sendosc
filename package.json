@@ -1,0 +1,21 @@
+{
+  "name": "sendosc",
+  "version": "0.0.1",
+  "description": "Simple NodeJS utility for sending osc",
+  "main": "main.js",
+  "bin": "main.js",
+  "type": "module",
+  "scripts": {
+  },
+  "author": {
+    "name": "Joel Wetzell",
+    "email": "me@jwetzell.com",
+    "url": "https://jwetzell.com"
+  },
+  "repository": "https://github.com/jwetzell/sendosc",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "osc-min": "^1.1.2"
+  }
+}
