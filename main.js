@@ -4,7 +4,7 @@ const {Option, program} = require('commander');
 const osc = require('osc-min')
 const dgram = require('dgram')
 const net = require('net')
-const packageInfo = require('./package.json')
+const packageInfo = require('./package.json');
 
 program.name(packageInfo.name)
 program.version(packageInfo.version)
@@ -17,9 +17,35 @@ program.argument('address', 'OSC address')
 program.argument('args...', 'many arguments')
 program.action((host,port,address,args,options,command)=>{
 
+    const cleanArgs = args.map((argString)=>{
+        let argType = 'string';
+
+        let cleanValue = argString
+        if(!isNaN(argString * 1)){
+            cleanValue = argString * 1;
+            if(argString.includes('.')){
+                console.log('is number and contains a dot')
+                argType = 'float'
+            } else {
+                argType = 'integer'
+            }
+        }else if(cleanValue === 'true' || cleanValue === 'false'){
+            argType = 'boolean'
+            cleanValue = JSON.parse(cleanValue)
+        }else{
+            cleanValue = argString
+        }
+
+        return {
+            type: argType,
+            value: cleanValue
+        }
+    })
+    console.log(cleanArgs)
+
     const oscMsgBuffer = osc.toBuffer({
         address,
-        args
+        args: cleanArgs
     })
     
     if(options.protocol === 'tcp'){
