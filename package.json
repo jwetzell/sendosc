@@ -1,6 +1,6 @@
 {
   "name": "sendosc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple NodeJS utility for sending osc",
   "main": "main.js",
   "bin": "main.js",
@@ -25,9 +25,9 @@
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.3"
   },
-  "pkg":{
-    "outputPath":"dist",
-    "targets":[
+  "pkg": {
+    "outputPath": "dist",
+    "targets": [
       "node18-linux-x64",
       "node18-macos-x64",
       "node18-win-x64"
