@@ -7,7 +7,7 @@ import net from 'net';
 
 program.description('simple util to sendosc');
 program.enablePositionalOptions()
-program.addOption(new Option('-p,--protocol <protocol>','Network protocol').choices(['tcp','udp']).default('tcp'))
+program.addOption(new Option('-p,--protocol <protocol>','Network protocol').choices(['tcp','udp']).default('udp'))
 program.argument('host', 'the host to send osc to')
 program.argument('port', 'the port to send osc to')
 program.argument('address', 'OSC address')
