@@ -33,3 +33,6 @@ jobs:
           overwrite: true
       - name: keep version in repo in sync with tag version
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          file_pattern: package.json
