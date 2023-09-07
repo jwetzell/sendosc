@@ -14,8 +14,6 @@ jobs:
           cache: 'npm'
       - name: install dependencies
         run: npm ci
-      - name: set version
-        run: npm version --no-git-tag-version $GITHUB_REF_NAME
       - name: publish to npm
         uses: JS-DevTools/npm-publish@v2.2.1
         with:
@@ -31,8 +29,3 @@ jobs:
           file: dist/*
           tag: ${{ github.ref }}
           overwrite: true
-      - name: keep version in repo in sync with tag version
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: main
-          file_pattern: package.json
