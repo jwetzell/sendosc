@@ -15,7 +15,7 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: set version
-        run: npm version $GITHUB_REF_NAME
+        run: npm version --no-git-tag-version $GITHUB_REF_NAME
       - name: publish to npm
         uses: JS-DevTools/npm-publish@v2.2.1
         with:
