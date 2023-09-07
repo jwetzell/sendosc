@@ -4,7 +4,7 @@ on:
     tags:
       - '*'
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -12,9 +12,18 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - name: Upload binaries to release
+      - name: install dependencies
+        run: npm ci
+      - name: set version
+        run: npm version $GITHUB_REF_NAME
+      - name: publish to npm
+        uses: JS-DevTools/npm-publish@v2.2.1
+        with:
+          # The NPM access token to use when publishing
+          token: ${{secrets.NPM_TOKEN}}
+      - name: create binaries
+        run: npm run build
+      - name: upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -22,3 +31,5 @@ jobs:
           file: dist/*
           tag: ${{ github.ref }}
           overwrite: true
+      - name: keep version in repo in sync with tag version
+        uses: stefanzweifel/git-auto-commit-action@v4
