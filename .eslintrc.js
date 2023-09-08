@@ -8,11 +8,4 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
-  rules: {
-    'prefer-destructuring': 'off',
-    'no-bitwise': 'off',
-    'class-methods-use-this': 'off',
-    'import/extensions': 'off',
-    'import/no-relative-packages': 'off',
-  },
 };
