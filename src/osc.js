@@ -1,9 +1,12 @@
 const oscTypeConverterMap = {
   s: {
     toBuffer: (string) => {
-      const padSize = 4 - (string.length % 4);
-      const paddedString = string.padEnd(string.length + padSize, '\u0000');
-      return Buffer.from(paddedString, 'ascii');
+      let oscString = `${string}\u0000`;
+      const padSize = 4 - (oscString.length % 4);
+      if (padSize < 4) {
+        oscString = oscString.padEnd(oscString.length + padSize, '\u0000');
+      }
+      return Buffer.from(oscString, 'ascii');
     },
     fromString: (string) => string,
   },
