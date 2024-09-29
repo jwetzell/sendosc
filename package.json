@@ -2,10 +2,11 @@
   "name": "sendosc",
   "version": "0.0.6",
   "description": "Simple NodeJS utility for sending osc",
-  "main": "main.js",
-  "bin": "main.js",
+  "main": "dist/main.js",
+  "bin": "dist/main.js",
   "scripts": {
-    "build": "pkg ."
+    "prebuild": "rimraf dist",
+    "build": "esbuild src/main.js --bundle --platform=node --outfile=dist/main.js"
   },
   "author": {
     "name": "Joel Wetzell",
@@ -16,21 +17,14 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "commander": "^11.0.0",
-    "osc-min": "^1.1.2"
+    "slip": "^1.0.2"
   },
   "devDependencies": {
-    "pkg": "^5.8.1",
+    "esbuild": "0.24.0",
     "eslint": "^8.48.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.3"
-  },
-  "pkg": {
-    "outputPath": "dist",
-    "targets": [
-      "node18-linux-x64",
-      "node18-macos-x64",
-      "node18-win-x64"
-    ]
+    "prettier": "^3.0.3",
+    "rimraf": "6.0.1"
   }
 }
