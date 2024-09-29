@@ -53,7 +53,7 @@ function argsToBuffer(args) {
   return Buffer.concat(argBuffers);
 }
 
-export function toBuffer({ address, args }) {
+function toBuffer({ address, args }) {
   const addressBuffer = oscTypeConverterMap.s.toBuffer(address);
   const typeString = args.map((arg) => arg.type).join('');
   const typesBuffer = oscTypeConverterMap.s.toBuffer(`,${typeString}`);
@@ -61,7 +61,7 @@ export function toBuffer({ address, args }) {
   return Buffer.concat([addressBuffer, typesBuffer, argsBuffer]);
 }
 
-export function argToTypedArg(rawArg, type = 's') {
+function argToTypedArg(rawArg, type = 's') {
   const typeConverter = oscTypeConverterMap[type];
   if (typeConverter === undefined) {
     throw new Error('osc type error: unknown type '.concat(type));
@@ -73,3 +73,8 @@ export function argToTypedArg(rawArg, type = 's') {
 
   return typeConverter.fromString(rawArg);
 }
+
+module.exports = {
+  toBuffer,
+  argToTypedArg,
+};
