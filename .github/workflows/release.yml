@@ -1,31 +1,24 @@
-name: release
+name: Publish sendosc to npmjs
 on:
   push:
     tags:
       - '*'
 jobs:
-  build-and-release:
+  publish-lib:
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
-          node-version: 18
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
-      - name: install dependencies
+          cache-dependency-path: package-lock.json'
+      - name: Install Node.js dependencies
         run: npm ci
-      - name: publish to npm
-        uses: JS-DevTools/npm-publish@v2.2.1
-        with:
-          # The NPM access token to use when publishing
-          token: ${{secrets.NPM_TOKEN}}
-      - name: create binaries
-        run: npm run build
-      - name: upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file_glob: true
-          file: dist/*
-          tag: ${{ github.ref }}
-          overwrite: true
+      - name: Publish to NPM
+        run: npm publish --provenance --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
