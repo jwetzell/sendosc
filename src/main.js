@@ -16,9 +16,7 @@ program.addOption(new Option('--port <port>', 'the port to send osc to').makeOpt
 program.addOption(new Option('--address <address>', 'OSC address').makeOptionMandatory());
 program.addOption(new Option('--args <args...>', 'osc args').default([]));
 program.addOption(new Option('--slip', 'slip encode message').default(false));
-program.addOption(
-  new Option('-t --types <types...>', 'osc arg types').choices(['s', 'i', 'f', 'b', 'T', 'F']).default([])
-);
+program.addOption(new Option('--types <types...>', 'osc arg types').choices(['s', 'i', 'f', 'b']).default([]));
 program.action((options) => {
   const { host, port, address, args, types } = options;
 
