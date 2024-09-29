@@ -6,7 +6,8 @@
   "bin": "dist/main.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "esbuild src/main.js --bundle --platform=node --outfile=dist/main.js"
+    "build": "esbuild src/main.js --bundle --platform=node --outfile=dist/main.js",
+    "prepack": "npm run build"
   },
   "author": {
     "name": "Joel Wetzell",
