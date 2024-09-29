@@ -1,6 +1,6 @@
 {
   "name": "sendosc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple NodeJS utility for sending osc",
   "main": "dist/main.js",
   "bin": "dist/main.js",
